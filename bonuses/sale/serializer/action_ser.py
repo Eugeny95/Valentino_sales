@@ -1,12 +1,20 @@
 from rest_framework import serializers
+from ..models import Sale
 
 
-class Action:
-    def __init__(self, title, id):
-        self.title = title
-        self.id = id
+class Sales:
+    def __init__(self, sales):
+        self.sales = sales
+        
 
 
-class ActionSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    title = serializers.CharField(required=False, allow_blank=True, max_length=100)
+class SalesSerializer(serializers.Serializer):
+    sales = serializers.ListField()
+
+
+
+
+class SaleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sale
+        fields = ['id', 'title', 'descryption', 'image']
